@@ -26,13 +26,13 @@ RUN echo $'{\n\
     auto_https off\n\
 }\n\
 \n\
-:80 {\n\
+:{$PORT:8080} {\n\
     root * /usr/share/caddy\n\
     encode gzip\n\
     try_files {path} /index.html\n\
     file_server\n\
 }' > /etc/caddy/Caddyfile
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
